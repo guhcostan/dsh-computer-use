@@ -1,0 +1,52 @@
+{
+  "name": "dsh-computer-use",
+  "version": "0.1.0",
+  "description": "Computer use for DeepSeek Harness: a profile bundle that drives the local desktop through the installed Cua Driver, with a visible agent cursor.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Gustavo Costa",
+  "keywords": [
+    "deepseek",
+    "dsh",
+    "computer-use",
+    "cua-driver",
+    "desktop",
+    "agent",
+    "mcp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guhcostan/dsh-computer-use.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guhcostan/dsh-computer-use/issues"
+  },
+  "homepage": "https://github.com/guhcostan/dsh-computer-use#readme",
+  "icon": "./icon.svg",
+  "exports": {
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "scripts/check.sh",
+    "README.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-computer-use": "0.2.1-rc.3",
+    "@deepseek-ai/dsh-experimental-computer-use-cua-driver-mcp": "0.2.1-rc.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  }
+}

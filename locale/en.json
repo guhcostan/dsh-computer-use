@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "Computer Use",
+    "description": "Controls the local desktop through the Cua Driver daemon, with a visible agent cursor, screenshots and native app interaction."
+  }
+}

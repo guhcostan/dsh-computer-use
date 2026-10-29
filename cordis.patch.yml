@@ -1,0 +1,33 @@
+# dsh-computer-use — a DeepSeek Harness profile bundle.
+#
+# It inserts the shared computer-use seam (`@deepseek-ai/dsh-computer-use`) and the
+# installed-Cua-Driver MCP provider
+# (`@deepseek-ai/dsh-experimental-computer-use-cua-driver-mcp`).
+#
+# The MCP provider talks to the standalone CuaDriver.app daemon, which owns the
+# macOS Accessibility / Screen Recording grants and draws the agent cursor
+# overlay. The in-process native provider cannot draw the overlay from a headless
+# Node host, so this bundle is the one that gives you the visible cursor.
+#
+# There is exactly one computer-use provider per profile: do not mount a second
+# provider (`cua-driver-native` or another MCP instance) alongside this row.
+#
+# `command: cua-driver` relies on PATH. If DSH was started from Finder/Launchpad
+# and the CLI is not on PATH, override this row in your profile's
+# cordis.patch.yml with the absolute path (an override replaces the whole config):
+#
+#   - id: computer-use-cua-driver-mcp
+#     name: '@deepseek-ai/dsh-experimental-computer-use-cua-driver-mcp'
+#     config:
+#       command: /Users/you/.local/bin/cua-driver
+#       args: ['mcp']
+#       toolCallTimeoutMs: 180000
+- insert:
+    - id: computer-use
+      name: '@deepseek-ai/dsh-computer-use'
+    - id: computer-use-cua-driver-mcp
+      name: '@deepseek-ai/dsh-experimental-computer-use-cua-driver-mcp'
+      config:
+        command: cua-driver
+        args: ['mcp']
+        toolCallTimeoutMs: 180000
