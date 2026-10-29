@@ -115,15 +115,27 @@ dsh-computer-use/
 
 ## Known driver quirks (0.23.2)
 
-These come from Cua Driver, not from the bundle; they are documented so you do not chase them:
+These come from Cua Driver, not from the bundle; they are documented so you do not chase them.
+All of them were reproduced while validating this bundle against DSH 0.2.1-rc.3 + Cua Driver 0.23.2:
 
-- `get_agent_cursor_state` fails output-schema validation while the cursor was never
-  positioned (`position` is `null`); enable the cursor first.
-- `move_cursor` rejects `target` combined with `scope`; use `scope: "window"` plus legacy
-  `pid` / `window_id`.
+- **Session label** — do not pass the literal `session: "implicit"`: the tool rejects it
+  (`session 'implicit' has ended`). Omit `session` and the current transport's implicit
+  session is used.
+- `get_agent_cursor_state` fails output-schema validation while `position` is `null`, and on
+  some builds returns only the summary line without `theme`/`position`/`visibility`. Enable
+  the cursor first, and use `get_cursor_position` if you need a position read-back.
+- `move_cursor` rejects `target` combined with `scope`; use `scope: "window"` plus the legacy
+  `pid` / `window_id` fields.
+- Window-scope `x`/`y` are window-local screenshot pixels. On a 2x Retina display the overlay
+  placement reported by the driver can diverge in x while y matches; treat positions as
+  approximate and verify visually.
 - `set_agent_cursor_theme` rejects ids that are not installed and does not list valid ones;
   the default theme is `cua.default`.
 - `get_config` may return only the header on some builds.
+- `list_windows` may return only a count (`Found N window(s)`) without window records on
+  macOS; use `get_accessibility_tree` for exact `pid` / `window_id`.
+- Inline images from `get_desktop_state` can fail with `Maximum call stack size exceeded`;
+  pass `screenshot_out_file` to write the PNG to disk instead.
 
 ## Version compatibility
 
