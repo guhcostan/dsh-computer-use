@@ -1,6 +1,6 @@
 {
-  "name": "dsh-computer-use",
-  "version": "0.1.0",
+  "name": "@guhcostan/dsh-computer-use",
+  "version": "0.1.1",
   "description": "Computer use for DeepSeek Harness: a profile bundle that drives the local desktop through the installed Cua Driver, with a visible agent cursor.",
   "type": "module",
   "license": "MIT",
@@ -48,5 +48,8 @@
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

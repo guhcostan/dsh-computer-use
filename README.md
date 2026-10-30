@@ -1,5 +1,7 @@
 # dsh-computer-use
 
+[![CI](https://github.com/guhcostan/dsh-computer-use/actions/workflows/ci.yml/badge.svg)](https://github.com/guhcostan/dsh-computer-use/actions/workflows/ci.yml)
+
 **Desktop computer use for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).**
 A DSH profile bundle that connects the shared computer-use service to the installed
 [Cua Driver](https://github.com/trycua/cua) daemon — the mode that can draw the **visible agent
@@ -61,6 +63,9 @@ resolves its dependencies and registers it as a profile bundle layer.
 
 3. Open a **new chat**. Sessions created before the bundle activated do not receive the new
    tool namespace.
+
+> **npm:** the package is published as `@guhcostan/dsh-computer-use`; once the npm release is
+> live, install it by name with `plugin_manager install_bundle target=@guhcostan/dsh-computer-use@0.1.1`.
 
 > The bundle declares `@deepseek-ai/dsh-computer-use` and
 > `@deepseek-ai/dsh-experimental-computer-use-cua-driver-mcp` as dependencies. Exactly one
